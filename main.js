@@ -65,7 +65,7 @@ document.getElementById("submit-login").onclick = async (e) => {
     console.log(name)
     document.getElementById("login").classList.add("hide")
     await login(name);
-    
+
     document.getElementById("chat-container").classList.remove("hide")
     document.getElementById("stats").innerHTML = `Username: ${currentUserData.name} (${currentUserData.id})`
 }
@@ -180,8 +180,30 @@ const init = async () => {
         appendMessage(value.content, value.sender, value.timestamp, self);
     })
 
-    globalThis.updateFaceData = (motion,eyes) => {
-        
+    
+
+    // window.addEventListener("mousemove", (e) => {
+    //     dimensions = { x: e.clientX / document.documentElement.clientWidth, y: e.clientY / document.documentElement.clientHeight }
+    //     let updates = {}
+    //     updates[`/avatars/${currentUserData.id}/x`] = Math.floor(dimensions.x * 100) / 100;
+    //     updates[`/avatars/${currentUserData.id}/y`] = Math.floor(dimensions.y * 100) / 100;
+    //     update(ref(database), updates);
+    // })
+
+    let updates = {}
+    updates[`/avatars/${currentUserData.id}/x`] = 0;
+    updates[`/avatars/${currentUserData.id}/y`] = 0;
+    updates[`/avatars/${currentUserData.id}/z`] = 0;
+    updates[`/avatars/${currentUserData.id}/mx`] = 0;
+    updates[`/avatars/${currentUserData.id}/my`] = 0;
+    updates[`/avatars/${currentUserData.id}/ex`] = 0;
+    updates[`/avatars/${currentUserData.id}/ey`] = 0;
+    updates[`/avatars/${currentUserData.id}/bl`] = 0;
+    updates[`/avatars/${currentUserData.id}/br`] = 0;
+    update(ref(database), updates);
+
+    globalThis.updateFaceData = (motion, eyes) => {
+
         let updates = {}
         updates[`/avatars/${currentUserData.id}/x`] = trimDigits(motion.x);
         updates[`/avatars/${currentUserData.id}/y`] = trimDigits(motion.y);
@@ -193,38 +215,18 @@ const init = async () => {
         updates[`/avatars/${currentUserData.id}/bl`] = trimDigits(eyes.bl);
         updates[`/avatars/${currentUserData.id}/br`] = trimDigits(eyes.br);
         update(ref(database), updates);
-        console.log(`/avatars/${currentUserData.id}`,updates)
-    
+        console.log(`/avatars/${currentUserData.id}`, updates)
+
     }
-
-    // window.addEventListener("mousemove", (e) => {
-    //     dimensions = { x: e.clientX / document.documentElement.clientWidth, y: e.clientY / document.documentElement.clientHeight }
-    //     let updates = {}
-    //     updates[`/avatars/${currentUserData.id}/x`] = Math.floor(dimensions.x * 100) / 100;
-    //     updates[`/avatars/${currentUserData.id}/y`] = Math.floor(dimensions.y * 100) / 100;
-    //     update(ref(database), updates);
-    // })
-
-    let updates = {}
-        updates[`/avatars/${currentUserData.id}/x`] = 0;
-        updates[`/avatars/${currentUserData.id}/y`] = 0;
-        updates[`/avatars/${currentUserData.id}/z`] = 0;
-        updates[`/avatars/${currentUserData.id}/mx`] = 0;
-        updates[`/avatars/${currentUserData.id}/my`] = 0;
-        updates[`/avatars/${currentUserData.id}/ex`] = 0;
-        updates[`/avatars/${currentUserData.id}/ey`] = 0;
-        updates[`/avatars/${currentUserData.id}/bl`] = 0;
-        updates[`/avatars/${currentUserData.id}/br`] = 0;
-        update(ref(database), updates);
 }
 
-globalThis.updateFaceData = (motion,eyes) => {
+globalThis.updateFaceData = (motion, eyes) => {
 
 }
 
 
 
-function trimDigits(val, digits = 1){
+function trimDigits(val, digits = 1) {
     let pow = Math.pow(10, digits);
     return Math.round(val * pow) / pow;
 }
