@@ -191,6 +191,7 @@ const init = async () => {
     // })
 
     let updates = {}
+    updates[`/avatars/${currentUserData.id}/character`] = currentUserData.character;
     updates[`/avatars/${currentUserData.id}/x`] = 0;
     updates[`/avatars/${currentUserData.id}/y`] = 0;
     updates[`/avatars/${currentUserData.id}/z`] = 0;
