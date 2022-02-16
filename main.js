@@ -9,15 +9,20 @@ import { getDatabase, ref, set, push, onValue, onChildAdded, update, remove } fr
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+
+// --------請將這個部份取代成自己的設定檔-------
+
 const firebaseConfig = {
-    apiKey: "AIzaSyBCyM-g4fFp4axWO4-lvoP477s7UZO3PQo",
-    authDomain: "simple-classroom-c471b.firebaseapp.com",
-    projectId: "simple-classroom-c471b",
-    storageBucket: "simple-classroom-c471b.appspot.com",
-    messagingSenderId: "89432203870",
-    appId: "1:89432203870:web:62b881222ca231d5db4acf",
-    measurementId: "G-DBESJHVE6Q"
-};
+    apiKey: "AIzaSyBIQHdmKOafeUrqlVjIB1wWUQiv5ZPTxvE",
+    authDomain: "online-chat-83e19.firebaseapp.com",
+    projectId: "online-chat-83e19",
+    storageBucket: "online-chat-83e19.appspot.com",
+    messagingSenderId: "1023883115443",
+    appId: "1:1023883115443:web:83b057a304210e83c629c6"
+  };
+
+// ---------------------------------------
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

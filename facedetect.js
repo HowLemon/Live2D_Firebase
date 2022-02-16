@@ -41,7 +41,7 @@ async function faceDetection(video) {
 }
 
 function refreshPreviewer(face) {
-    window.lastDetectedFace = face;
+    // window.lastDetectedFace = face;
     var tip = face.annotations.noseTip[0];
     var leftCorner = face.annotations.noseLeftCorner[0];
     var rightCorner = face.annotations.noseRightCorner[0];
@@ -85,7 +85,7 @@ function refreshPreviewer(face) {
     // e.character.setMotion(vect[0] * 0.7, - vect[1] * 1.2, theta, 1, mouseOpen);
     // e.character.setEyes(eyeX, eyeY, isblinking(eyeBL), isblinking(eyeBR));
 
-    let motion = {x:vect[0] * 0.7,y: - vect[1] * 1.2,z:theta,mx:1,my:mouseOpen}
+    let motion = {x:vect[0] * 0.9,y: - vect[1] * 1.4,z:theta,mx:1,my:mouseOpen}
     let eyes = {ex:eyeX,ey:eyeY, bl:isblinking(eyeBL), br:isblinking(eyeBR)}
     // console.log(vect[0] * 0.7, - vect[1] * 1.2, theta, 1, mouseOpen)
     // console.log("fuc")
