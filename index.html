@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Classroom</title>
+    <link href="main.css" rel="stylesheet">
+    <!-- Pollyfill script -->
+    <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+    <!-- Live2DCubismCore script -->
+    <script src="cubismSDK/Core/live2dcubismcore.js"></script>
+    <script src="cubismSDK/bundle.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div id="login">
+            <input id="Username"><button id="submit-login">Login</button>
+            <div>
+                <input type="radio" name="Character" value="hiyori" id="hiyori" checked><label for="hiyori">Hiyori</label>
+                <input type="radio" name="Character" value="haru" id="haru" ><label for="haru">Haru</label>
+                <input type="radio" name="Character" value="koharu" id="koharu" ><label for="koharu">koharu</label>
+                <input type="radio" name="Character" value="Mark" id="Mark" ><label for="Mark">Mark</label>
+                <input type="radio" name="Character" value="miku" id="miku" ><label for="miku">miku</label>
+                <input type="radio" name="Character" value="Natori" id="Natori" ><label for="Natori">Natori</label>
+                <!-- <input type="radio" name="Character" value="Rice" id="Rice" ><label for="Rice">Rice</label> -->
+            </div>
+            
+        </div>
+        <div id="stats"> </div>
+    </nav>
+    <div id="chat-container" class="hide">
+        <div id="chat">
+        </div>
+        <input id="msg-input" /><button id="send-msg">Send</button>
+    </div>
+    <div class="canvas-container">
+
+    </div>
+
+    <script src="main.js" type="module"></script>
+</body>
+
+<script>
+    let names = "Aardvark Alligator Alpaca Anaconda Ant Antelope Ape Aphid Armadillo Asp Ass Baboon Badger Bald Eagle Barracuda Bass Basset Hound Bat Bearded Dragon Beaver Bedbug Bee Beetle Bird Bison Black panther Black Widow Spider Blue Jay Blue Whale Bobcat Buffalo Butterfly Buzzard Camel Caribou Carp Cat Caterpillar Catfish Cheetah Chicken Chimpanzee Chipmunk Cobra Cod Condor Cougar Cow Coyote Crab Crane Cricket Crocodile Crow Cuckoo Deer Dinosaur Dog Dolphin Donkey Dove Dragonfly Duck Eagle Eel Elephant Emu Falcon Ferret Finch Fish Flamingo Flea Fly Fox Frog Goat Goose Gopher Gorilla Grasshopper Hamster Hare Hawk Hippopotamus Horse Hummingbird Humpback Whale Husky Iguana Impala Kangaroo Lemur Leopard Lion Lizard Llama Lobster Marmot Monitor lizard Monkey Moose Mosquito Moth Mountain goat Mouse Mule Octopus Orca Ostrich Otter Owl Ox Oyster Panda Parrot Peacock Pelican Penguin Perch Pheasant Pig Pigeon Polar bear Porcupine Quoll Rabbit Raccoon Rat Rattlesnake Red Panda Rooster Sea lion Sheep Shrew Sloth Snail Snake Spider Tiger Turkey Wolf Wombat".split(" ")
+
+    function getRandomName(){
+        return names[Math.floor(Math.random()*names.length)]
+    }
+    document.getElementById("Username").value = getRandomName();
+</script>
+
+</html>

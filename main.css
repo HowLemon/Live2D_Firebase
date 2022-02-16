@@ -1,0 +1,119 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hide {
+    display: none;
+}
+
+nav {
+    position: absolute;
+}
+
+#chat-container{
+    margin: 0;
+    float: right;
+    width: 30vw;
+    height: 95vh;
+    border: 1px black solid;
+}
+
+#chat-container input{
+    width: 83%;
+}
+
+#chat-container button{
+    
+    float: right;
+}
+
+#chat {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#chat > div {
+    
+    clear: both;
+    width: 100%;
+    margin: 0;
+    height: fit-content;
+    padding: 0;
+    display: inline-block;
+    line-height: 100%;
+    transform: scaleY(-100%);
+}
+
+#chat > div > span {
+    transform: scaleY(-100%);
+    max-width: 70%;
+    display: inline-block;
+    overflow-wrap: break-word;
+    margin: 10px;
+    padding: 10px;
+    border: 1px black solid;
+    border-radius: 15px;
+    font-size: 1.2em;
+}
+#chat > div:first-child{
+    margin-top: 20px;
+}
+#chat > div:last-child{
+    margin-bottom: 50px;
+}
+
+#chat label{
+    transform: scaleY(-100%);
+    margin-top: 10px;
+    font-size: 0.7rem;
+    display: inline-block;
+    height: 100%;
+    vertical-align: 10px;
+}
+
+#chat div.self span {
+    border-color: rgb(143, 213, 39);
+    background-color: greenyellow;
+    float: right;
+    text-align: right;
+}
+
+#chat div.other span {
+    /* margin-top: 15px; */
+    border-color: rgb(211, 211, 211);
+    background-color: rgb(255, 255, 255);
+    float: left;
+}
+
+#chat div.other{
+    /* float: left; */
+    text-align: left;
+}
+
+#chat div.self{
+    text-align: right;
+}
+
+canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    pointer-events: none;
+}
+.canvas-container{
+    padding: 30px;
+}
+
+div.character{
+    width: 300px;
+    height: 500px;
+    border: 1px black solid;
+    border-radius: 10px;
+    background-color: aquamarine;
+    display: inline-block;
+}
