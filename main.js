@@ -63,8 +63,9 @@ async function sendMessage(msg) {
 document.getElementById("submit-login").onclick = async (e) => {
     let name = document.getElementById("Username").value;
     console.log(name)
-    await login(name);
     document.getElementById("login").classList.add("hide")
+    await login(name);
+    
     document.getElementById("chat-container").classList.remove("hide")
     document.getElementById("stats").innerHTML = `Username: ${currentUserData.name} (${currentUserData.id})`
 }
@@ -161,8 +162,8 @@ const init = async () => {
                 let value = m.val()
                 let rect = av.character.element.getBoundingClientRect()
                 let offset = { x: (av.character.element.offsetLeft + rect.width) / document.documentElement.clientWidth, y: (av.character.element.offsetTop + rect.height / 2) / document.documentElement.clientHeight }
-                av.character.setMotion((value.x + offset.x - 0.5) * 60, (value.y + offset.y - 0.5) * -60, 0, 0, 0)
-                av.character.setEyes((value.x + offset.x - 0.5) * 2, (value.y + offset.y - 0.5) * -2, 1, 1)
+                av.character.setMotion(value.x, value.y, value.z, value.mx, value.my)
+                av.character.setEyes(value.ex, value.ey, value.bl, value.br)
                 // console.log((value.x + offset.x - 0.5), (value.y + offset.y - 0.5))
             }
 
@@ -179,13 +180,30 @@ const init = async () => {
         appendMessage(value.content, value.sender, value.timestamp, self);
     })
 
-    window.addEventListener("mousemove", (e) => {
-        dimensions = { x: e.clientX / document.documentElement.clientWidth, y: e.clientY / document.documentElement.clientHeight }
+    globalThis.updateFaceData = (motion,eyes) => {
+        
         let updates = {}
-        updates[`/avatars/${currentUserData.id}/x`] = Math.floor(dimensions.x * 100) / 100;
-        updates[`/avatars/${currentUserData.id}/y`] = Math.floor(dimensions.y * 100) / 100;
+        updates[`/avatars/${currentUserData.id}/x`] = trimDigits(motion.x);
+        updates[`/avatars/${currentUserData.id}/y`] = trimDigits(motion.y);
+        updates[`/avatars/${currentUserData.id}/z`] = trimDigits(motion.z);
+        updates[`/avatars/${currentUserData.id}/mx`] = trimDigits(motion.mx);
+        updates[`/avatars/${currentUserData.id}/my`] = trimDigits(motion.my);
+        updates[`/avatars/${currentUserData.id}/ex`] = trimDigits(eyes.ex);
+        updates[`/avatars/${currentUserData.id}/ey`] = trimDigits(eyes.ey);
+        updates[`/avatars/${currentUserData.id}/bl`] = trimDigits(eyes.bl);
+        updates[`/avatars/${currentUserData.id}/br`] = trimDigits(eyes.br);
         update(ref(database), updates);
-    })
+        console.log(`/avatars/${currentUserData.id}`,updates)
+    
+    }
+
+    // window.addEventListener("mousemove", (e) => {
+    //     dimensions = { x: e.clientX / document.documentElement.clientWidth, y: e.clientY / document.documentElement.clientHeight }
+    //     let updates = {}
+    //     updates[`/avatars/${currentUserData.id}/x`] = Math.floor(dimensions.x * 100) / 100;
+    //     updates[`/avatars/${currentUserData.id}/y`] = Math.floor(dimensions.y * 100) / 100;
+    //     update(ref(database), updates);
+    // })
 
     let updates = {}
     updates[`/avatars/${currentUserData.id}/character`] = currentUserData.character;
@@ -194,7 +212,16 @@ const init = async () => {
     update(ref(database), updates);
 }
 
+globalThis.updateFaceData = (motion,eyes) => {
 
+}
+
+
+
+function trimDigits(val, digits = 1){
+    let pow = Math.pow(10, digits);
+    return Math.round(val * pow) / pow;
+}
 
 
 

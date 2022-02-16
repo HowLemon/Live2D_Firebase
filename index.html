@@ -12,6 +12,10 @@
     <!-- Live2DCubismCore script -->
     <script src="cubismSDK/Core/live2dcubismcore.js"></script>
     <script src="cubismSDK/bundle.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.6.0/dist/tf.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
 </head>
 
 <body>
@@ -39,8 +43,11 @@
     <div class="canvas-container">
 
     </div>
+    <video id="videoElement" class="hide"> </video>
+    <div id="params" class="hide"> </div>
 
     <script src="main.js" type="module"></script>
+    <script src="facedetect.js" type="module"></script>
 </body>
 
 <script>
