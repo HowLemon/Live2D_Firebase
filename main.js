@@ -206,10 +206,16 @@ const init = async () => {
     // })
 
     let updates = {}
-    updates[`/avatars/${currentUserData.id}/character`] = currentUserData.character;
-    updates[`/avatars/${currentUserData.id}/x`] = 0;
-    updates[`/avatars/${currentUserData.id}/y`] = 0;
-    update(ref(database), updates);
+        updates[`/avatars/${currentUserData.id}/x`] = 0;
+        updates[`/avatars/${currentUserData.id}/y`] = 0;
+        updates[`/avatars/${currentUserData.id}/z`] = 0;
+        updates[`/avatars/${currentUserData.id}/mx`] = 0;
+        updates[`/avatars/${currentUserData.id}/my`] = 0;
+        updates[`/avatars/${currentUserData.id}/ex`] = 0;
+        updates[`/avatars/${currentUserData.id}/ey`] = 0;
+        updates[`/avatars/${currentUserData.id}/bl`] = 0;
+        updates[`/avatars/${currentUserData.id}/br`] = 0;
+        update(ref(database), updates);
 }
 
 globalThis.updateFaceData = (motion,eyes) => {
