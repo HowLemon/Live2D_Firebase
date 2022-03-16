@@ -1,6 +1,7 @@
 const model = await faceLandmarksDetection.load(faceLandmarksDetection.SupportedPackages.mediapipeFacemesh);
 const videoObj = document.querySelector("#videoElement");
 const paramObj = document.querySelector("#params");
+var lastDetectedFace;
 
 // let e = await loadModel("resource/mark_free_Import.model3.json");
 
@@ -44,6 +45,7 @@ function refreshPreviewer(face) {
     if(!face) return;
     if(!lastDetectedFace){
         window.lastDetectedFace = face;
+        lastDetectedFace = face;
     }
     // window.lastDetectedFace = face;
     var tip = face.annotations.noseTip[0];
