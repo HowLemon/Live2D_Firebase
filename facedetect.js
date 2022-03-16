@@ -32,7 +32,7 @@ async function faceDetection(video) {
         //console.log(faces);
         refreshPreviewer(faces[0]);
     } catch (err) {
-        // console.error("facedetection error: ", err);
+        console.error("facedetection error: ", err);
     }
 
     setTimeout(() => {
@@ -41,6 +41,7 @@ async function faceDetection(video) {
 }
 
 function refreshPreviewer(face) {
+    if(!face) return;
     if(!lastDetectedFace){
         window.lastDetectedFace = face;
     }
