@@ -94,7 +94,7 @@ function refreshPreviewer(face) {
     }catch(err){
         console.error(err)
     }
-    
+    lastDetectedFace = face
 
 
 }
