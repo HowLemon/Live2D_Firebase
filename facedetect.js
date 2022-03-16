@@ -41,6 +41,9 @@ async function faceDetection(video) {
 }
 
 function refreshPreviewer(face) {
+    if(!lastDetectedFace){
+        window.lastDetectedFace = face;
+    }
     // window.lastDetectedFace = face;
     var tip = face.annotations.noseTip[0];
     var leftCorner = face.annotations.noseLeftCorner[0];
