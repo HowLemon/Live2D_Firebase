@@ -221,7 +221,7 @@ const init = async () => {
         updates[`/avatars/${currentUserData.id}/bl`] = trimDigits(eyes.bl);
         updates[`/avatars/${currentUserData.id}/br`] = trimDigits(eyes.br);
         update(ref(database), updates);
-        console.log(`/avatars/${currentUserData.id}`, updates)
+        // console.log(`/avatars/${currentUserData.id}`, updates)
 
     }
 }

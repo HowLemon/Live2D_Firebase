@@ -15,7 +15,9 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.6.0/dist/tf.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -25,11 +27,8 @@
             <div>
                 <input type="radio" name="Character" value="hiyori" id="hiyori" checked><label for="hiyori">Hiyori</label>
                 <input type="radio" name="Character" value="haru" id="haru" ><label for="haru">Haru</label>
-                <input type="radio" name="Character" value="koharu" id="koharu" ><label for="koharu">koharu</label>
-                <input type="radio" name="Character" value="Mark" id="Mark" ><label for="Mark">Mark</label>
                 <input type="radio" name="Character" value="miku" id="miku" ><label for="miku">miku</label>
                 <input type="radio" name="Character" value="Natori" id="Natori" ><label for="Natori">Natori</label>
-                <!-- <input type="radio" name="Character" value="Rice" id="Rice" ><label for="Rice">Rice</label> -->
             </div>
             
         </div>
@@ -57,6 +56,9 @@
         return names[Math.floor(Math.random()*names.length)]
     }
     document.getElementById("Username").value = getRandomName();
+
+    
+
 </script>
 
 </html>
