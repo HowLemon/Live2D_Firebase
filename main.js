@@ -56,7 +56,6 @@ async function login(name) {
 
 
 async function sendMessage(msg) {
-    const msgRef = ref(database, "messages");
     const newMsgRef = push(msgRef);
     let send = await set(newMsgRef, {
         sender: currentUserData.id,
@@ -226,19 +225,15 @@ const init = async () => {
     }
 }
 
+// do not remove this
 globalThis.updateFaceData = (motion, eyes) => {
 
 }
-
-
 
 function trimDigits(val, digits = 1) {
     let pow = Math.pow(10, digits);
     return Math.round(val * pow) / pow;
 }
-
-
-
 
 window.addEventListener("beforeunload", async function (e) {
     let updates = {};
