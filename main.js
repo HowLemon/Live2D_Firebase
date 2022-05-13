@@ -208,7 +208,7 @@ const init = async () => {
     update(ref(database), updates);
 
     globalThis.updateFaceData = (motion, eyes) => {
-
+        if(skipper++ % 3 !== 0){return}
         let updates = {}
         updates[`/avatars/${currentUserData.id}/x`] = trimDigits(motion.x);
         updates[`/avatars/${currentUserData.id}/y`] = trimDigits(motion.y);
@@ -224,6 +224,8 @@ const init = async () => {
 
     }
 }
+
+let skipper = 0;
 
 // do not remove this
 globalThis.updateFaceData = (motion, eyes) => {
