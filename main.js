@@ -208,7 +208,7 @@ const init = async () => {
     update(ref(database), updates);
 
     globalThis.updateFaceData = (motion, eyes) => {
-        if(skipper++ % 3 !== 0){return}
+        if(skipper++ % 3 !== 0 || mouseMode){return}
         let updates = {}
         updates[`/avatars/${currentUserData.id}/x`] = trimDigits(motion.x);
         updates[`/avatars/${currentUserData.id}/y`] = trimDigits(motion.y);
@@ -223,13 +223,42 @@ const init = async () => {
         // console.log(`/avatars/${currentUserData.id}`, updates)
 
     }
+    window.addEventListener("mousemove",(e)=>{
+        if(skipper++ % 5 !== 0 || !mouseMode) return;
+        const motion = {x:0,y:0,z:0, mx: 1, my:0, ex:0, ey:0, bl:1, br:1};
+        motion.x = (e.clientX / window.screen.width) * 60 - 30;
+        motion.y = ((e.clientY / window.screen.height) * 60 - 30) * -1;
+        motion.ex = motion.x / 60;
+        motion.ey = motion.y / 60;
+        updates[`/avatars/${currentUserData.id}/x`] = trimDigits(motion.x);
+        updates[`/avatars/${currentUserData.id}/y`] = trimDigits(motion.y);
+        updates[`/avatars/${currentUserData.id}/z`] = trimDigits(motion.z);
+        updates[`/avatars/${currentUserData.id}/mx`] = trimDigits(motion.mx);
+        updates[`/avatars/${currentUserData.id}/my`] = trimDigits(motion.my);
+        updates[`/avatars/${currentUserData.id}/ex`] = trimDigits(motion.ex);
+        updates[`/avatars/${currentUserData.id}/ey`] = trimDigits(motion.ey);
+        updates[`/avatars/${currentUserData.id}/bl`] = trimDigits(motion.bl);
+        updates[`/avatars/${currentUserData.id}/br`] = trimDigits(motion.br);
+        update(ref(database), updates);
+        console.log(motion);
+    })
 }
 
 let skipper = 0;
-
+let mouseMode = false;
 // do not remove this
 globalThis.updateFaceData = (motion, eyes) => {
 
+}
+
+
+
+document.getElementById("mouse-toggle").addEventListener("click",()=>{
+    toggleMouseMode();
+})
+
+function toggleMouseMode(){
+    mouseMode = !mouseMode;
 }
 
 function trimDigits(val, digits = 1) {
